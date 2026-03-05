@@ -1,0 +1,1272 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>{% block title %}Services - Abdelfatah Hany{% endblock %}</title>
+  <meta name="description" content="{% block description %}Professional services offered by Abdelfatah Hany - Web Development, Django, React, and more{% endblock %}">
+  <meta name="keywords" content="{% block keywords %}services, web development, django, react, python, full-stack, programming{% endblock %}">
+
+  <!-- Favicons -->
+  <link href="{% static 'base/img/logo.png' %}" rel="icon">
+  <link href="{% static 'base/img/logo.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <style>
+    /* ===== ROOT VARIABLES ===== */
+    :root {
+      --primary-gradient: linear-gradient(135deg, #4a00e0 0%, #1a1a2e 100%);
+      --secondary-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+      --accent-color: #6d28d9;
+      --dark-color: #0a0a0f;
+      --darker-color: #050509;
+      --light-color: #f8fafc;
+      --gray-800: #1e293b;
+      --gray-700: #334155;
+      --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      --shadow-xl: 0 35px 60px -15px rgba(0, 0, 0, 0.7);
+      --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      --border-glow: 0 0 20px rgba(109, 40, 217, 0.3);
+      --card-bg: rgba(30, 41, 59, 0.5);
+      --border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* ===== GLOBAL STYLES ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, var(--darker-color) 0%, var(--dark-color) 100%);
+      color: var(--light-color);
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding-top: 80px;
+    }
+
+    /* ===== HEADER STYLES ===== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(10, 10, 15, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 15px 0;
+      transition: var(--transition-smooth);
+    }
+
+    .header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--primary-gradient);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .logo-icon img {
+      height: 30px;
+      width: auto;
+    }
+
+    .sitename {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      margin: 0;
+    }
+
+    .sitename span {
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Navigation Menu */
+    .navmenu {
+      display: flex;
+      align-items: center;
+    }
+
+    .navmenu ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .navmenu ul li {
+      position: relative;
+    }
+
+    .navmenu ul li a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 8px 15px;
+      border-radius: 5px;
+      transition: var(--transition-smooth);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .navmenu ul li a:hover,
+    .navmenu ul li a.active {
+      background: rgba(109, 40, 217, 0.1);
+      color: white;
+    }
+
+    /* Social Links in Header */
+    .header-social-links {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .header-social-links a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(30, 41, 59, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+      font-size: 1rem;
+    }
+
+    .header-social-links a:hover {
+      background: var(--primary-gradient);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* Mobile Nav Toggle */
+    .mobile-nav-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      background: var(--card-bg);
+      border-radius: 8px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: white;
+      font-size: 1.5rem;
+      border: 1px solid var(--border-color);
+    }
+
+    /* ===== SERVICES HERO SECTION ===== */
+    .services-hero {
+      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+      padding: 100px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .services-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(109, 40, 217, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(74, 0, 224, 0.1) 0%, transparent 50%);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 15px;
+    }
+
+    .section-title p {
+      color: #94a3b8;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ===== SERVICES GRID ===== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px 30px;
+      border: 1px solid var(--border-color);
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--primary-gradient);
+      transform: scaleX(0);
+      transition: var(--transition-smooth);
+      transform-origin: left;
+    }
+
+    .service-card:hover {
+      transform: translateY(-15px);
+      border-color: var(--accent-color);
+      box-shadow: var(--shadow-xl), var(--border-glow);
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-icon {
+      width: 70px;
+      height: 70px;
+      background: var(--primary-gradient);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 25px;
+      font-size: 1.8rem;
+      color: white;
+    }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    .service-card p {
+      color: #cbd5e1;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .service-features {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 25px 0;
+    }
+
+    .service-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    .service-features li i {
+      color: #10b981;
+      font-size: 1rem;
+    }
+
+    .service-price {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .price-tag {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .price-tag span {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      font-weight: 400;
+    }
+
+    .btn-service {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary-gradient);
+      color: white;
+      padding: 10px 25px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 5px 15px rgba(74, 0, 224, 0.3);
+    }
+
+    .btn-service:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(74, 0, 224, 0.4);
+      color: white;
+      text-decoration: none;
+    }
+
+    /* ===== PROCESS SECTION ===== */
+    .process-section {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+      position: relative;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .process-step {
+      text-align: center;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      border: 1px solid var(--border-color);
+      transition: var(--transition-smooth);
+      position: relative;
+    }
+
+    .process-step:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--accent-color);
+    }
+
+    .step-number {
+      width: 50px;
+      height: 50px;
+      background: var(--primary-gradient);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 0 auto 20px;
+      position: relative;
+    }
+
+    .step-number::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -35px;
+      width: 30px;
+      height: 2px;
+      background: var(--accent-color);
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .process-step:not(:last-child) .step-number::after {
+        display: block;
+      }
+    }
+
+    .process-step h4 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    .process-step p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* ===== TESTIMONIALS SECTION ===== */
+    .testimonials-section {
+      padding: 80px 0;
+      background: var(--dark-color);
+    }
+
+    .testimonial-card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 30px;
+      border: 1px solid var(--border-color);
+      transition: var(--transition-smooth);
+      height: 100%;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--accent-color);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .testimonial-content {
+      font-style: italic;
+      color: #cbd5e1;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .testimonial-content::before {
+      content: '"';
+      font-size: 4rem;
+      color: var(--accent-color);
+      position: absolute;
+      top: -20px;
+      left: -10px;
+      opacity: 0.3;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent-color);
+    }
+
+    .author-info h5 {
+      color: white;
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+    }
+
+    .author-info p {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    /* ===== CTA SECTION ===== */
+    .cta-section {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(109, 40, 217, 0.1) 0%, transparent 70%);
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-content h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .cta-content p {
+      color: #cbd5e1;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary-gradient);
+      color: white;
+      padding: 15px 40px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: var(--transition-smooth);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(74, 0, 224, 0.4);
+    }
+
+    .btn-cta:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(74, 0, 224, 0.6);
+      color: white;
+      text-decoration: none;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #0a0a0f;
+      border-top: 1px solid var(--border-color);
+      padding: 60px 0 30px;
+    }
+
+    .footer h3, .footer h5 {
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .footer p, .footer a {
+      color: #94a3b8;
+      transition: var(--transition-smooth);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: white;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+      border: 1px solid var(--border-color);
+    }
+
+    .social-icon:hover {
+      background: var(--primary-gradient);
+      color: white;
+      transform: translateY(-5px);
+      border-color: transparent;
+    }
+
+    .copyright, .credits {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-color);
+      color: #94a3b8;
+    }
+
+    /* ===== SCROLL TO TOP ===== */
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--primary-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition-smooth);
+      z-index: 999;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .scroll-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-top:hover {
+      transform: translateY(-5px);
+    }
+
+    /* ===== PRELOADER ===== */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--dark-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(255, 255, 255, 0.1);
+      border-top-color: var(--accent-color);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ===== QUICK LINKS ===== */
+    .quick-links {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .quick-link {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+      border: 1px solid var(--border-color);
+    }
+
+    .quick-link:hover {
+      background: var(--primary-gradient);
+      color: white;
+      transform: translateX(-8px);
+    }
+
+    /* ===== RESPONSIVE DESIGN ===== */
+    @media (max-width: 992px) {
+      .section-title h2 {
+        font-size: 2.5rem;
+      }
+      
+      .mobile-nav-toggle {
+        display: flex;
+      }
+      
+      .navmenu {
+        position: fixed;
+        top: 80px;
+        right: -100%;
+        width: 280px;
+        height: calc(100vh - 80px);
+        background: rgba(10, 10, 15, 0.98);
+        backdrop-filter: blur(20px);
+        transition: var(--transition-smooth);
+        padding: 30px;
+        border-left: 1px solid var(--border-color);
+        flex-direction: column;
+        z-index: 999;
+      }
+      
+      .navmenu.active {
+        right: 0;
+      }
+      
+      .navmenu ul {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        width: 100%;
+      }
+      
+      .navmenu ul li {
+        width: 100%;
+      }
+      
+      .navmenu ul li a {
+        padding: 12px 20px;
+        width: 100%;
+      }
+      
+      .header-social-links {
+        margin-left: auto;
+        margin-right: 20px;
+      }
+      
+      .quick-links {
+        display: none;
+      }
+      
+      .services-hero {
+        padding: 120px 0 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      
+      .cta-content h2 {
+        font-size: 2rem;
+      }
+      
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .process-steps {
+        grid-template-columns: 1fr;
+      }
+      
+      .step-number::after {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .section-title h2 {
+        font-size: 1.8rem;
+      }
+      
+      .service-card {
+        padding: 30px 20px;
+      }
+      
+      .cta-content h2 {
+        font-size: 1.8rem;
+      }
+      
+      .btn-cta {
+        width: 100%;
+        padding: 12px 30px;
+      }
+      
+      .header-social-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="services-page">
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Quick Links -->
+  <div class="quick-links">
+    <a href="{% url 'home' %}" class="quick-link" title="Home">
+      <i class="bi bi-house"></i>
+    </a>
+    <a href="{% url 'about' %}" class="quick-link" title="About">
+      <i class="bi bi-person"></i>
+    </a>
+    <a href="{% url 'portfolio' %}" class="quick-link" title="Portfolio">
+      <i class="bi bi-briefcase"></i>
+    </a>
+    <a href="{% url 'contact' %}" class="quick-link" title="Contact">
+      <i class="bi bi-envelope"></i>
+    </a>
+  </div>
+
+  <!-- Header -->
+  <header id="header" class="header">
+    <div class="container">
+      <!-- Logo -->
+   <a href="{% url 'home' %}" class="logo d-flex align-items-center me-auto me-xl-0" style="text-decoration: none;">
+    <div class="logo-icon me-2" style="display: flex; align-items: center;">
+        <img src="{% static 'base/img/logo.png' %}" 
+             alt="Abdelfatah Hany Logo" 
+             style="height:50px; width:auto; display:block;">
+    </div>
+    <span class="sitename fw-bold" style="color: #00c0ff; font-size: 1.3rem; margin-left: 8px;">Abdelfatah</span>
+</a>
+
+      <!-- Navigation Menu -->
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{% url 'home' %}">
+            <i class="bi bi-house me-1"></i>Home
+          </a></li>
+          <li><a href="{% url 'about' %}">
+            <i class="bi bi-person me-1"></i>About
+          </a></li>
+          <li><a href="{% url 'resume' %}">
+            <i class="bi bi-file-text me-1"></i>Projects
+          </a></li>
+          <li><a href="{% url 'services' %}" class="active">
+            <i class="bi bi-gear me-1"></i>Services
+          </a></li>
+          <li><a href="{% url 'portfolio' %}">
+            <i class="bi bi-briefcase me-1"></i>Portfolio
+          </a></li>
+          <li><a href="{% url 'contact' %}">
+            <i class="bi bi-envelope me-1"></i>Contact
+          </a></li>
+        </ul>
+      </nav>
+
+      <!-- Social Links -->
+      <div class="header-social-links">
+        <a href="https://www.facebook.com/abdelfattah.hany.2025" title="Facebook">
+          <i class="bi bi-facebook"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/abdelfatah-hany/" title="LinkedIn">
+          <i class="bi bi-linkedin"></i>
+        </a>
+        <a href="https://github.com/abdelfatah18/" title="GitHub">
+          <i class="bi bi-github"></i>
+        </a>
+      </div>
+
+      <!-- Mobile Toggle -->
+      <div class="mobile-nav-toggle">
+        <i class="bi bi-list"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main">
+    <!-- Services Hero Section -->
+    <section class="services-hero">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2>My Services</h2>
+          <p>Comprehensive web development solutions tailored to your business needs</p>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="services-grid">
+          <!-- Service 1 -->
+          <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-icon">
+              <i class="bi bi-code-slash"></i>
+            </div>
+            <h3>Full-Stack Development</h3>
+            <p>End-to-end web application development using modern technologies and best practices.</p>
+            <ul class="service-features">
+              <li><i class="bi bi-check-circle"></i> Python/Django Backend</li>
+              <li><i class="bi bi-check-circle"></i> React.js Frontend</li>
+              <li><i class="bi bi-check-circle"></i> RESTful APIs</li>
+              <li><i class="bi bi-check-circle"></i> Database Design</li>
+            </ul>
+            <div class="service-price">
+              <div class="price-tag">$150+<span>/project</span></div>
+              <a href="{% url 'contact' %}" class="btn-service">Get Started</a>
+            </div>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-icon">
+              <i class="bi bi-window"></i>
+            </div>
+            <h3>Custom Web Applications</h3>
+            <p>Tailored web solutions designed to solve your specific business challenges.</p>
+            <ul class="service-features">
+              <li><i class="bi bi-check-circle"></i> Business Process Automation</li>
+              <li><i class="bi bi-check-circle"></i> E-commerce Solutions</li>
+              <li><i class="bi bi-check-circle"></i> CRM Systems</li>
+              <li><i class="bi bi-check-circle"></i> Custom Dashboards</li>
+            </ul>
+            <div class="service-price">
+              <div class="price-tag">$200+<span>/project</span></div>
+              <a href="{% url 'contact' %}" class="btn-service">Get Started</a>
+            </div>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-icon">
+              <i class="bi bi-database"></i>
+            </div>
+            <h3>API Development & Integration</h3>
+            <p>Robust API solutions and seamless third-party integrations for your applications.</p>
+            <ul class="service-features">
+              <li><i class="bi bi-check-circle"></i> REST/GraphQL APIs</li>
+              <li><i class="bi bi-check-circle"></i> Payment Gateway Integration</li>
+              <li><i class="bi bi-check-circle"></i> Social Media APIs</li>
+              <li><i class="bi bi-check-circle"></i> Webhook Implementation</li>
+            </ul>
+            <div class="service-price">
+              <div class="price-tag">$80+<span>/project</span></div>
+              <a href="{% url 'contact' %}" class="btn-service">Get Started</a>
+            </div>
+          </div>
+
+          <!-- Service 4 -->
+          <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-icon">
+              <i class="bi bi-phone"></i>
+            </div>
+            <h3>Responsive Web Design</h3>
+            <p>Beautiful, mobile-friendly websites that work perfectly on all devices.</p>
+            <ul class="service-features">
+              <li><i class="bi bi-check-circle"></i> Mobile-First Design</li>
+              <li><i class="bi bi-check-circle"></i> Cross-Browser Compatibility</li>
+              <li><i class="bi bi-check-circle"></i> Performance Optimization</li>
+              <li><i class="bi bi-check-circle"></i> SEO Best Practices</li>
+            </ul>
+            <div class="service-price">
+              <div class="price-tag">$120+<span>/project</span></div>
+              <a href="{% url 'contact' %}" class="btn-service">Get Started</a>
+            </div>
+          </div>
+
+          <!-- Service 5 -->
+          <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+            <div class="service-icon">
+              <i class="bi bi-gear"></i>
+            </div>
+            <h3>Maintenance & Support</h3>
+            <p>Ongoing support and maintenance to keep your applications running smoothly.</p>
+            <ul class="service-features">
+              <li><i class="bi bi-check-circle"></i> Regular Updates</li>
+              <li><i class="bi bi-check-circle"></i> Bug Fixes</li>
+              <li><i class="bi bi-check-circle"></i> Security Patches</li>
+              <li><i class="bi bi-check-circle"></i> Performance Monitoring</li>
+            </ul>
+            <div class="service-price">
+              <div class="price-tag">$30<span>/month</span></div>
+              <a href="{% url 'contact' %}" class="btn-service">Get Started</a>
+            </div>
+          </div>
+
+          <!-- Service 6 -->
+          <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+            <div class="service-icon">
+              <i class="bi bi-headset"></i>
+            </div>
+            <h3>Technical Consultation</h3>
+            <p>Expert advice on technology stack, architecture, and development strategies.</p>
+            <ul class="service-features">
+              <li><i class="bi bi-check-circle"></i> Technology Selection</li>
+              <li><i class="bi bi-check-circle"></i> Architecture Planning</li>
+              <li><i class="bi bi-check-circle"></i> Code Review</li>
+              <li><i class="bi bi-check-circle"></i> Development Strategy</li>
+            </ul>
+            <div class="service-price">
+              <div class="price-tag">$10<span>/hour</span></div>
+              <a href="{% url 'contact' %}" class="btn-service">Get Started</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2>My Working Process</h2>
+          <p>A structured approach to delivering high-quality solutions</p>
+        </div>
+
+        <div class="process-steps">
+          <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+            <div class="step-number">1</div>
+            <h4>Discovery & Planning</h4>
+            <p>Understanding your requirements, goals, and creating a detailed project plan.</p>
+          </div>
+
+          <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+            <div class="step-number">2</div>
+            <h4>Design & Prototyping</h4>
+            <p>Creating wireframes, mockups, and interactive prototypes for your approval.</p>
+          </div>
+
+          <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+            <div class="step-number">3</div>
+            <h4>Development</h4>
+            <p>Building the solution using modern technologies and following best practices.</p>
+          </div>
+
+          <div class="process-step" data-aos="fade-up" data-aos-delay="400">
+            <div class="step-number">4</div>
+            <h4>Testing & Deployment</h4>
+            <p>Rigorous testing and smooth deployment to production environment.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+  
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content" data-aos="fade-up">
+          <h2>Ready to Start Your Project?</h2>
+          <p>Let's work together to bring your ideas to life. Contact me today to discuss your project requirements and get a free consultation.</p>
+          <a href="{% url 'contact' %}" class="btn-cta">
+            <i class="bi bi-chat-left-text me-2"></i> Get Free Consultation
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <h3 class="h4 mb-3">Abdelfatah Hany</h3>
+          <p>Creating innovative digital solutions with modern web technologies.</p>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <h5 class="h6 mb-3">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="{% url 'home' %}">Home</a></li>
+            <li class="mb-2"><a href="{% url 'services' %}">Services</a></li>
+            <li class="mb-2"><a href="{% url 'portfolio' %}">Portfolio</a></li>
+            <li class="mb-2"><a href="{% url 'contact' %}">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <h5 class="h6 mb-3">Connect With Me</h5>
+          <div class="social-links">
+            <a href="https://www.facebook.com/abdelfattah.hany.2025" class="social-icon" title="Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/abdelfatah-hany/" class="social-icon" title="LinkedIn">
+              <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="https://github.com/abdelfatah18/" class="social-icon" title="GitHub">
+              <i class="bi bi-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p class="mb-0">© 2024 <strong>Abdelfatah Hany</strong> - All Rights Reserved</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <a href="#" class="scroll-top">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <!-- Custom JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize AOS
+      if (typeof AOS !== 'undefined') {
+        AOS.init({
+          duration: 800,
+          once: true,
+          offset: 100
+        });
+      }
+
+      // Mobile Navigation Toggle
+      const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+      const navmenu = document.querySelector('.navmenu');
+      
+      if (mobileNavToggle && navmenu) {
+        mobileNavToggle.addEventListener('click', function() {
+          navmenu.classList.toggle('active');
+          const icon = this.querySelector('i');
+          if (icon.classList.contains('bi-list')) {
+            icon.classList.remove('bi-list');
+            icon.classList.add('bi-x');
+          } else {
+            icon.classList.remove('bi-x');
+            icon.classList.add('bi-list');
+          }
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+          if (!navmenu.contains(event.target) && 
+              !mobileNavToggle.contains(event.target) && 
+              navmenu.classList.contains('active')) {
+            navmenu.classList.remove('active');
+            mobileNavToggle.querySelector('i').classList.remove('bi-x');
+            mobileNavToggle.querySelector('i').classList.add('bi-list');
+          }
+        });
+        
+        // Close mobile menu when clicking a link
+        const navLinks = document.querySelectorAll('.navmenu a');
+        navLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            navmenu.classList.remove('active');
+            mobileNavToggle.querySelector('i').classList.remove('bi-x');
+            mobileNavToggle.querySelector('i').classList.add('bi-list');
+          });
+        });
+      }
+
+      // Scroll to Top Button
+      const scrollTop = document.querySelector('.scroll-top');
+      
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+          scrollTop.classList.add('active');
+        } else {
+          scrollTop.classList.remove('active');
+        }
+      });
+      
+      scrollTop.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+
+      // Hide preloader when page loads
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        window.addEventListener('load', function() {
+          setTimeout(() => {
+            preloader.style.opacity = '0';
+            preloader.style.visibility = 'hidden';
+          }, 500);
+        });
+      }
+
+      // Add hover effects to service cards
+      const serviceCards = document.querySelectorAll('.service-card');
+      serviceCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          const icon = this.querySelector('.service-icon');
+          icon.style.transform = 'rotate(15deg) scale(1.1)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+          const icon = this.querySelector('.service-icon');
+          icon.style.transform = 'rotate(0) scale(1)';
+        });
+      });
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === '#') return;
+          
+          e.preventDefault();
+          const targetElement = document.querySelector(href);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Header scroll effect
+      const header = document.querySelector('.header');
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+          header.style.padding = '10px 0';
+          header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.2)';
+        } else {
+          header.style.padding = '15px 0';
+          header.style.boxShadow = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1179 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Websites Portfolio - Abdelfatah Hany</title>
+  <meta name="description" content="Explore all websites developed by Abdelfatah Hany - Professional Full-Stack Developer">
+  <meta name="keywords" content="websites portfolio, web development, django, react, ecommerce, projects">
+
+  <!-- Favicons -->
+  <link href="{% static 'base/img/logo.png' %}" rel="icon">
+  <link href="{% static 'base/img/logo.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'base/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'base/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'base/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'base/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="{% static 'base/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+
+  <style>
+    /* نفس الأنماط الأساسية من الصفحات السابقة */
+    :root {
+      --primary-gradient: linear-gradient(135deg, #4a00e0 0%, #1a1a2e 100%);
+      --secondary-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+      --accent-color: #6d28d9;
+      --dark-color: #0a0a0f;
+      --darker-color: #050509;
+      --light-color: #f8fafc;
+      --gray-800: #1e293b;
+      --gray-700: #334155;
+      --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      --shadow-xl: 0 35px 60px -15px rgba(0, 0, 0, 0.7);
+      --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      --border-glow: 0 0 20px rgba(109, 40, 217, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body.dark-theme {
+      background: linear-gradient(135deg, var(--darker-color) 0%, var(--dark-color) 100%);
+      color: var(--light-color);
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* === نفس تنسيق الهيدر === */
+    .dark-header {
+      background: rgba(10, 10, 15, 0.95) !important;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .header {
+      padding: 20px 0;
+    }
+
+    .header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--primary-gradient);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .sitename {
+      color: #00c0ff !important;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+
+    .navmenu {
+      display: flex;
+      align-items: center;
+    }
+
+    .navmenu ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navmenu a {
+      color: #cbd5e1;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      transition: var(--transition-smooth);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .navmenu a:hover,
+    .navmenu a.active {
+      background: rgba(109, 40, 217, 0.1);
+      color: white;
+    }
+
+    .header-social-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .header-social-links a {
+      color: #cbd5e1;
+      font-size: 1.2rem;
+      transition: var(--transition-smooth);
+      text-decoration: none;
+    }
+
+    .header-social-links a:hover {
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* === قسم البطل === */
+    .websites-hero {
+      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+      padding: 150px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .websites-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(109, 40, 217, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(74, 0, 224, 0.1) 0%, transparent 50%);
+    }
+
+    .display-4 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      color: #ffffff !important;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .display-4 span {
+      background: linear-gradient(135deg, #00c0ff 0%, #6d28d9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 900;
+      text-shadow: none;
+    }
+
+    .lead {
+      font-size: 1.2rem;
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      color: #d1d5db !important;
+    }
+
+    .badge.bg-warning {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+      color: #ffffff !important;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 50px;
+      border: none;
+      box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* === معرض المواقع === */
+    .websites-gallery {
+      padding: 80px 0;
+    }
+
+    .website-card {
+      background: rgba(30, 41, 59, 0.4);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: var(--transition-smooth);
+      height: 100%;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .website-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(109, 40, 217, 0.5);
+      box-shadow: 0 25px 50px rgba(109, 40, 217, 0.2), var(--border-glow);
+    }
+
+    .website-image {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
+
+    .website-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .website-card:hover .website-image img {
+      transform: scale(1.05);
+    }
+
+    .website-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: linear-gradient(135deg, #4a00e0 0%, #6d28d9 100%);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      box-shadow: 0 5px 15px rgba(74, 0, 224, 0.4);
+      z-index: 2;
+    }
+
+    .website-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to top, rgba(10, 10, 15, 0.9) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .website-card:hover .website-overlay {
+      opacity: 1;
+    }
+
+    .website-content {
+      padding: 25px;
+    }
+
+    .website-title {
+      color: white;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .website-description {
+      color: #a0aec0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .website-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tech-tag {
+      background: rgba(109, 40, 217, 0.15);
+      color: #a78bfa;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid rgba(109, 40, 217, 0.3);
+    }
+
+    .website-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-visit {
+      background: linear-gradient(135deg, #4a00e0 0%, #6d28d9 100%);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition-smooth);
+      flex: 1;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-visit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(109, 40, 217, 0.4);
+      color: white;
+      text-decoration: none;
+    }
+
+    .btn-preview {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition-smooth);
+      flex: 1;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-preview:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-3px);
+      color: white;
+      text-decoration: none;
+    }
+
+    /* === قسم الإحصائيات === */
+    .stats-section {
+      background: rgba(30, 41, 59, 0.4);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 80px 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 25px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: var(--transition-smooth);
+      height: 100%;
+    }
+
+    .stat-item:hover {
+      transform: translateY(-8px);
+      background: rgba(109, 40, 217, 0.15);
+      border-color: rgba(109, 40, 217, 0.3);
+      box-shadow: 0 15px 30px rgba(109, 40, 217, 0.2);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #00c0ff 0%, #6d28d9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+
+    .stat-label {
+      color: #a0aec0 !important;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    /* === الفوتر === */
+    .footer {
+      background: #0a0a0f;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 50px 0 30px;
+    }
+
+    .footer h3, .footer h5, .footer h6 {
+      color: #ffffff !important;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .footer p {
+      color: #a0aec0 !important;
+      line-height: 1.7;
+      margin-bottom: 15px;
+    }
+
+    .footer a {
+      color: #a0aec0 !important;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+      font-weight: 500;
+    }
+
+    .footer a:hover {
+      color: #ffffff !important;
+      transform: translateX(5px);
+    }
+
+    /* === شريط التمرير السريع === */
+    .quick-links {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .quick-link {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(30, 41, 59, 0.8);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-lg);
+      transition: var(--transition-smooth);
+      color: #cbd5e1;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-decoration: none;
+    }
+
+    .quick-link:hover {
+      transform: scale(1.1) translateX(-8px);
+      background: var(--primary-gradient);
+      color: white;
+      box-shadow: 0 15px 30px rgba(74, 0, 224, 0.4);
+      text-decoration: none;
+    }
+
+    /* === زر التمرير للأعلى === */
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 55px;
+      height: 55px;
+      background: linear-gradient(135deg, #4a00e0 0%, #6d28d9 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white !important;
+      text-decoration: none;
+      opacity: 0;
+      transition: var(--transition-smooth);
+      z-index: 999;
+      box-shadow: 0 5px 20px rgba(109, 40, 217, 0.5);
+      font-size: 1.2rem;
+    }
+
+    .scroll-top.show {
+      opacity: 1;
+    }
+
+    .scroll-top:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 10px 25px rgba(109, 40, 217, 0.6);
+    }
+
+    /* === الجسيمات المتحركة === */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* === تحسينات للجوال === */
+    @media (max-width: 992px) {
+      .display-4 {
+        font-size: 2.5rem;
+      }
+      
+      .navmenu ul {
+        flex-direction: column;
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 10, 15, 0.95);
+        padding: 20px;
+        display: none;
+      }
+      
+      .navmenu ul.show {
+        display: flex;
+      }
+      
+      .mobile-nav-toggle {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+      
+      .quick-links {
+        display: none;
+      }
+      
+      .website-actions {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .websites-hero {
+        padding: 120px 0 40px;
+      }
+      
+      .display-4 {
+        font-size: 2rem;
+      }
+      
+      .lead {
+        font-size: 1rem;
+      }
+      
+      .website-image {
+        height: 180px;
+      }
+    }
+
+    .mb-4 { margin-bottom: 1.5rem !important; }
+    .mb-3 { margin-bottom: 1rem !important; }
+    .mb-5 { margin-bottom: 3rem !important; }
+    .mt-4 { margin-top: 1.5rem !important; }
+    .mt-5 { margin-top: 3rem !important; }
+    .me-1 { margin-right: 0.25rem !important; }
+    .me-2 { margin-right: 0.5rem !important; }
+    .me-3 { margin-right: 1rem !important; }
+
+    /* === تصنيفات المواقع === */
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+      padding: 10px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      font-weight: 500;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: linear-gradient(135deg, #4a00e0 0%, #6d28d9 100%);
+      color: white;
+      border-color: transparent;
+      transform: translateY(-3px);
+    }
+  </style>
+</head>
+
+<body class="dark-theme">
+
+  <!-- شريط التمرير السريع -->
+  <div class="quick-links">
+    <a href="{% url 'home' %}" class="quick-link" title="Home">
+      <i class="bi bi-house"></i>
+    </a>
+    <a href="{% url 'home' %}" class="quick-link" title="Portfolio">
+      <i class="bi bi-briefcase"></i>
+    </a>
+    <a href="{% url 'home' %}" class="quick-link" title="Websites">
+      <i class="bi bi-globe"></i>
+    </a>
+    <a href="{% url 'contact' %}" class="quick-link" title="Contact">
+      <i class="bi bi-envelope"></i>
+    </a>
+  </div>
+
+  <!-- الهيدر -->
+  <header id="header" class="header dark-header d-flex align-items-center sticky-top">
+    <div class="container position-relative d-flex align-items-center justify-content-between">
+      <a href="{% url 'home' %}" class="logo d-flex align-items-center me-auto me-xl-0">
+        <div class="logo-icon me-2">
+          <img src="{% static 'base/img/logo.png' %}" alt="Abdelfatah Hany Logo" style="height:50px; width:auto;">
+        </div>
+        <span class="sitename fw-bold">Abdelfatah</span>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{% url 'home' %}">
+            <i class="bi bi-house me-1"></i>Home
+          </a></li>
+          <li><a href="{% url 'about' %}">
+            <i class="bi bi-person me-1"></i>About
+          </a></li>
+          <li><a href="{% url 'portfolio' %}">
+            <i class="bi bi-briefcase me-1"></i>Portfolio
+          </a></li>
+          <li><a href="{% url 'home' %}" class="active">
+            <i class="bi bi-globe me-1"></i>Websites
+          </a></li>
+          <li><a href="{% url 'contact' %}">
+            <i class="bi bi-envelope me-1"></i>Contact
+          </a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <div class="header-social-links">
+        <a href="https://www.facebook.com/abdelfattah.hany.2025" class="facebook" title="Facebook">
+          <i class="bi bi-facebook"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/abdelfatah-hany/" class="linkedin" title="LinkedIn">
+          <i class="bi bi-linkedin"></i>
+        </a>
+        <a href="https://github.com/abdelfatah18/" class="github" title="GitHub">
+          <i class="bi bi-github"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <!-- قسم البطل -->
+    <section class="websites-hero">
+      <div class="particles" id="particles"></div>
+      <div class="container" data-aos="fade-up">
+        <div class="text-center">
+          <span class="badge bg-warning mb-3">
+            <i class="bi bi-star-fill me-1"></i> Featured Collection
+          </span>
+          <h1 class="display-4 fw-bold mb-4">My <span>Websites</span> Portfolio</h1>
+          <p class="lead">Explore a collection of professional websites I've developed, showcasing modern design, functionality, and performance.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- معرض المواقع -->
+    <section class="websites-gallery">
+      <div class="container">
+        <!-- تصنيفات المواقع -->
+        <div class="filter-buttons mb-5">
+          <button class="filter-btn active" data-filter="all">All Projects</button>
+          <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+          <button class="filter-btn" data-filter="business">Business</button>
+          <button class="filter-btn" data-filter="education">Education</button>
+          <button class="filter-btn" data-filter="portfolio">Portfolio</button>
+        </div>
+
+        <!-- صف المواقع الأول -->
+        <div class="row g-4 mb-5">
+          <!-- الموقع 1: متجر إلكتروني -->
+          <div class="col-lg-6" data-category="ecommerce">
+            <div class="website-card" data-aos="fade-up" data-aos-delay="100">
+              <div class="website-image">
+                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="E-commerce Store">
+                <div class="website-badge">
+                  <i class="bi bi-cart-check me-1"></i> E-commerce
+                </div>
+                <div class="website-overlay">
+                  <a href="https://abdelfatah10.pythonanywhere.com/" target="_blank" class="btn-visit">
+                    <i class="bi bi-box-arrow-up-right me-2"></i>Visit Live
+                  </a>
+                </div>
+              </div>
+              <div class="website-content">
+                <h3 class="website-title">
+                  <i class="bi bi-shop" style="color: #f59e0b;"></i>
+                  FashionStore Pro
+                </h3>
+                <p class="website-description">
+                  Complete e-commerce platform with user authentication, shopping cart, payment integration, and admin dashboard. Built with Django and React.
+                </p>
+                <div class="website-tech">
+                  <span class="tech-tag">Python</span>
+                  <span class="tech-tag">Django</span>
+                  <span class="tech-tag">React</span>
+                  <span class="tech-tag">PostgreSQL</span>
+                  <span class="tech-tag">Stripe</span>
+                </div>
+                <div class="website-actions">
+                  <a href="https://abdelfatah10.pythonanywhere.com/" target="_blank" class="btn-visit">
+                    <i class="bi bi-box-arrow-up-right me-2"></i>Visit Website
+                  </a>
+                  <a href="#" class="btn-preview">
+                    <i class="bi bi-eye me-2"></i>Case Study
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- الموقع 2: موقع تعليمي -->
+          <div class="col-lg-6" data-category="education">
+            <div class="website-card" data-aos="fade-up" data-aos-delay="200">
+              <div class="website-image">
+                <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Learning Platform">
+                <div class="website-badge">
+                  <i class="bi bi-mortarboard me-1"></i> Education
+                </div>
+                <div class="website-overlay">
+                  <a href="https://example-edu.com" target="_blank" class="btn-visit">
+                    <i class="bi bi-box-arrow-up-right me-2"></i>Visit Live
+                  </a>
+                </div>
+              </div>
+              <div class="website-content">
+                <h3 class="website-title">
+                  <i class="bi bi-book" style="color: #10b981;"></i>
+                  EduLearn Platform
+                </h3>
+                <p class="website-description">
+                  Interactive learning platform with course management, video lessons, quizzes, and progress tracking. Features responsive design and user-friendly interface.
+                </p>
+                <div class="website-tech">
+                  <span class="tech-tag">Django</span>
+                  <span class="tech-tag">JavaScript</span>
+                  <span class="tech-tag">PostgreSQL</span>
+                  <span class="tech-tag">Video.js</span>
+                  <span class="tech-tag">Bootstrap</span>
+                </div>
+                <div class="website-actions">
+                  <a href="https://example-edu.com" target="_blank" class="btn-visit">
+                    <i class="bi bi-box-arrow-up-right me-2"></i>Visit Website
+                  </a>
+                  <a href="#" class="btn-preview">
+                    <i class="bi bi-eye me-2"></i>Case Study
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- صف المواقع الثاني -->
+        <div class="row g-4 mb-5">
+          <!-- الموقع 3: موقع أعمال -->
+          <div class="col-lg-6" data-category="business">
+            <div class="website-card" data-aos="fade-up" data-aos-delay="300">
+              <div class="website-image">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Business Website">
+                <div class="website-badge">
+                  <i class="bi bi-building me-1"></i> Business
+                </div>
+                <div class="website-overlay">
+                  <a href="https://example-business.com" target="_blank" class="btn-visit">
+                    <i class="bi bi-box-arrow-up-right me-2"></i>Visit Live
+                  </a>
+                </div>
+              </div>
+              <div class="website-content">
+                <h3 class="website-title">
+                  <i class="bi bi-briefcase" style="color: #3b82f6;"></i>
+                  TechCorp Solutions
+                </h3>
+                <p class="website-description">
+                  Professional business website with services showcase, client portfolio, blog system, and contact management. Optimized for SEO and fast loading.
+                </p>
+                <div class="website-tech">
+                  <span class="tech-tag">Django</span>
+                  <span class="tech-tag">HTML/CSS</span>
+                  <span class="tech-tag">JavaScript</span>
+                  <span class="tech-tag">SEO</span>
+                  <span class="tech-tag">Google Analytics</span>
+                </div>
+                <div class="website-actions">
+                  <a href="https://example-business.com" target="_blank" class="btn-visit">
+                    <i class="bi bi-box-arrow-up-right me-2"></i>Visit Website
+                  </a>
+                  <a href="#" class="btn-preview">
+                    <i class="bi bi-eye me-2"></i>Case Study
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- الموقع 4: موقع بورتفوليو -->
+          <div class="col-lg-6" data-category="portfolio">
+            <div class="website-card" data-aos="fade-up" data-aos-delay="400">
+              <div class="website-image">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Portfolio Website">
+                <div class="website-badge">
+                  <i class="bi bi-person-badge me-1"></i> Portfolio
+                </div>
+                <div class="website-overlay">
+                  <a href="https://example-portfolio.com" target="_blank" class="btn-visit">
+                    <i class="bi bi-box-arrow-up-right me-2"></i>Visit Live
+                  </a>
+                </div>
+              </div>
+              <div class="website-content">
+                <h3 class="website-title">
+                  <i class="bi bi-palette" style="color: #8b5cf6;"></i>
+                  Creative Portfolio
+                </h3>
+                <p class="website-description">
+                  Modern portfolio website with interactive gallery, project showcase, and contact form. Features smooth animations and responsive design for all devices.
+                </p>
+                <div class="website-tech">
+                  <span class="tech-tag">React</span>
+                  <span class="tech-tag">CSS3</span>
+                  <span class="tech-tag">GSAP</span>
+                  <span class="tech-tag">Responsive</span>
+                  <span class="tech-tag">Framer Motion</span>
+                </div>
+                <div class="website-actions">
+                  <a href="https://example-portfolio.com" target="_blank" class="btn-visit">
+                    <i class="bi bi-box-arrow-up-right me-2"></i>Visit Website
+                  </a>
+                  <a href="#" class="btn-preview">
+                    <i class="bi bi-eye me-2"></i>Case Study
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- صف المواقع الثالث -->
+        <div class="row g-4">
+          <!-- الموقع 5: مدونة -->
+          <div class="col-lg-6" data-category="business">
+            <div class="website-card" data-aos="fade-up" data-aos-delay="500">
+              <div class="website-image">
+                <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Blog Platform">
+                <div class="website-badge">
+                  <i class="bi bi-pencil-square me-1"></i> Blog
+                </div>
+                <div class="website-overlay">
+                  <a href="https://example-blog.com" target="_blank" class="btn-visit">
+                    <i class="bi bi-box-arrow-up-right me-2"></i>Visit Live
+                  </a>
+                </div>
+              </div>
+              <div class="website-content">
+                <h3 class="website-title">
+                  <i class="bi bi-journal-text" style="color: #ef4444;"></i>
+                  TechBlog Hub
+                </h3>
+                <p class="website-description">
+                  Advanced blogging platform with rich text editor, categories, tags, comments system, and user management. Includes social sharing and newsletter integration.
+                </p>
+                <div class="website-tech">
+                  <span class="tech-tag">Django</span>
+                  <span class="tech-tag">PostgreSQL</span>
+                  <span class="tech-tag">CKEditor</span>
+                  <span class="tech-tag">REST API</span>
+                  <span class="tech-tag">Redis</span>
+                </div>
+                <div class="website-actions">
+                  <a href="https://example-blog.com" target="_blank" class="btn-visit">
+                    <i class="bi bi-box-arrow-up-right me-2"></i>Visit Website
+                  </a>
+                  <a href="#" class="btn-preview">
+                    <i class="bi bi-eye me-2"></i>Case Study
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- الموقع 6: تطبيق طعام -->
+          <div class="col-lg-6" data-category="ecommerce">
+            <div class="website-card" data-aos="fade-up" data-aos-delay="600">
+              <div class="website-image">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Food Delivery">
+                <div class="website-badge">
+                  <i class="bi bi-egg-fried me-1"></i> Food Delivery
+                </div>
+                <div class="website-overlay">
+                  <a href="https://example-food.com" target="_blank" class="btn-visit">
+                    <i class="bi bi-box-arrow-up-right me-2"></i>Visit Live
+                  </a>
+                </div>
+              </div>
+              <div class="website-content">
+                <h3 class="website-title">
+                  <i class="bi bi-basket" style="color: #f97316;"></i>
+                  FoodExpress
+                </h3>
+                <p class="website-description">
+                  Food delivery platform with restaurant listings, menu management, online ordering, real-time tracking, and payment processing. Mobile-first responsive design.
+                </p>
+                <div class="website-tech">
+                  <span class="tech-tag">Django</span>
+                  <span class="tech-tag">React Native</span>
+                  <span class="tech-tag">WebSocket</span>
+                  <span class="tech-tag">Google Maps API</span>
+                  <span class="tech-tag">Payment Gateway</span>
+                </div>
+                <div class="website-actions">
+                  <a href="https://example-food.com" target="_blank" class="btn-visit">
+                    <i class="bi bi-box-arrow-up-right me-2"></i>Visit Website
+                  </a>
+                  <a href="#" class="btn-preview">
+                    <i class="bi bi-eye me-2"></i>Case Study
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- قسم الإحصائيات -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h3 class="h2 fw-bold mb-3">Development Statistics</h3>
+          <p class="lead">Key metrics that reflect my commitment to quality and performance</p>
+        </div>
+        
+        <div class="row g-4">
+          <div class="col-md-3 col-6 text-center">
+            <div class="stat-item">
+              <div class="stat-number">6+</div>
+              <div class="stat-label">WEBSITES DELIVERED</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6 text-center">
+            <div class="stat-item">
+              <div class="stat-number">99.9%</div>
+              <div class="stat-label">UPTIME RATE</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6 text-center">
+            <div class="stat-item">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">CLIENT SATISFACTION</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6 text-center">
+            <div class="stat-item">
+              <div class="stat-number">24/7</div>
+              <div class="stat-label">SUPPORT AVAILABLE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- الفوتر -->
+  <footer id="footer" class="footer">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <h3 class="h4 mb-3 fw-bold">Abdelfatah Hany</h3>
+          <p>Creating innovative digital solutions with modern web technologies.</p>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <h5 class="h6 mb-3 fw-bold">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="{% url 'home' %}">Home</a></li>
+            <li class="mb-2"><a href="{% url 'portfolio' %}">Portfolio</a></li>
+            <li class="mb-2"><a href="{% url 'home' %}">Websites</a></li>
+            <li class="mb-2"><a href="{% url 'contact' %}">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <h5 class="h6 mb-3 fw-bold">Connect With Me</h5>
+          <div class="social-links">
+            <a href="https://www.facebook.com/abdelfattah.hany.2025" class="social-icon" title="Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/abdelfatah-hany/" class="social-icon" title="LinkedIn">
+              <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="https://github.com/abdelfatah18/" class="social-icon" title="GitHub">
+              <i class="bi bi-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <hr style="background: rgba(255, 255, 255, 0.1); margin: 2rem 0;">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <div class="copyright">
+            <p class="mb-0">© <span>2024</span> <strong class="px-1">Abdelfatah Hany</strong> <span>All Rights Reserved</span></p>
+          </div>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <div class="credits">
+            <span>Designed by </span>
+            <a href="#" style="color: #a78bfa; text-decoration: none; font-weight: 600;">Abdelfatah Hany</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- زر التمرير للأعلى -->
+  <a href="#" id="scroll-top" class="scroll-top">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+
+  <!-- JavaScript -->
+  <script src="{% static 'base/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'base/vendor/aos/aos.js' %}"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize AOS
+      if (typeof AOS !== 'undefined') {
+        AOS.init({
+          duration: 800,
+          once: true,
+          offset: 100
+        });
+      }
+
+      // Create particles
+      const particlesContainer = document.getElementById('particles');
+      if (particlesContainer) {
+        for (let i = 0; i < 15; i++) {
+          const particle = document.createElement('div');
+          particle.classList.add('particle');
+          
+          const size = Math.random() * 8 + 4;
+          const posX = Math.random() * 100;
+          const posY = Math.random() * 100;
+          const duration = Math.random() * 20 + 10;
+          const delay = Math.random() * 5;
+          
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          particle.style.left = `${posX}%`;
+          particle.style.top = `${posY}%`;
+          particle.style.opacity = Math.random() * 0.2 + 0.1;
+          particle.style.background = 'var(--primary-gradient)';
+          particle.style.borderRadius = '50%';
+          particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+          
+          particlesContainer.appendChild(particle);
+        }
+      }
+
+      // تصفية المواقع حسب التصنيف
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const websiteCards = document.querySelectorAll('.website-card');
+      
+      filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          // إزالة النشاط من جميع الأزرار
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          // إضافة النشاط للزر المضغوط
+          this.classList.add('active');
+          
+          const filterValue = this.getAttribute('data-filter');
+          
+          websiteCards.forEach(card => {
+            const category = card.parentElement.getAttribute('data-category');
+            
+            if (filterValue === 'all' || filterValue === category) {
+              card.parentElement.style.display = 'block';
+              setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+              }, 100);
+            } else {
+              card.style.opacity = '0';
+              card.style.transform = 'translateY(20px)';
+              setTimeout(() => {
+                card.parentElement.style.display = 'none';
+              }, 300);
+            }
+          });
+        });
+      });
+
+      // Mobile menu toggle
+      const mobileToggle = document.querySelector('.mobile-nav-toggle');
+      const navMenu = document.querySelector('.navmenu ul');
+      
+      if (mobileToggle && navMenu) {
+        mobileToggle.addEventListener('click', function() {
+          navMenu.classList.toggle('show');
+        });
+        
+        document.addEventListener('click', function(e) {
+          if (!e.target.closest('.navmenu') && !e.target.closest('.mobile-nav-toggle')) {
+            navMenu.classList.remove('show');
+          }
+        });
+      }
+
+      // Scroll to top button
+      const scrollTopButton = document.getElementById('scroll-top');
+      
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+          scrollTopButton.classList.add('show');
+        } else {
+          scrollTopButton.classList.remove('show');
+        }
+      });
+      
+      scrollTopButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+
+      // Add floating animation style
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes float {
+          0%, 100% { 
+            transform: translateY(0) rotate(0deg); 
+          }
+          33% { 
+            transform: translateY(-20px) rotate(120deg); 
+          }
+          66% { 
+            transform: translateY(10px) rotate(240deg); 
+          }
+        }
+        
+        .website-card {
+          transition: all 0.3s ease;
+        }
+      `;
+      document.head.appendChild(style);
+    });
+  </script>
+</body>
+</html>

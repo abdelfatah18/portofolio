@@ -1,0 +1,1318 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Backend API Development - Abdelfatah Hany</title>
+  <meta name="description" content="Professional Backend API Development Services">
+  <meta name="keywords" content="backend, api, django, python, rest, development">
+
+  <!-- Favicons -->
+  <link href="{% static 'base/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'base/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'base/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'base/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'base/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="{% static 'base/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'base/main.css' %}" rel="stylesheet">
+
+  <!-- Dark Theme Enhancements CSS -->
+  <style>
+    /* Dark Theme Enhancements */
+    :root {
+      --primary-gradient: linear-gradient(135deg, #4a00e0 0%, #1a1a2e 100%);
+      --secondary-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+      --accent-color: #6d28d9;
+      --dark-color: #0a0a0f;
+      --darker-color: #050509;
+      --light-color: #f8fafc;
+      --gray-800: #1e293b;
+      --gray-700: #334155;
+      --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      --shadow-xl: 0 35px 60px -15px rgba(0, 0, 0, 0.7);
+      --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      --border-glow: 0 0 20px rgba(109, 40, 217, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body.dark-theme {
+      background: linear-gradient(135deg, var(--darker-color) 0%, var(--dark-color) 100%);
+      color: var(--light-color);
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .dark-header {
+      background: rgba(10, 10, 15, 0.95) !important;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .service-details-hero {
+      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+      padding: 150px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-details-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(109, 40, 217, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(74, 0, 224, 0.1) 0%, transparent 50%);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Button Enhancements */
+    .enhanced-btn-primary {
+      background: var(--primary-gradient);
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-smooth);
+      box-shadow: 0 10px 25px rgba(74, 0, 224, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+    }
+
+    .enhanced-btn-primary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(74, 0, 224, 0.4);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: white;
+      text-decoration: none;
+    }
+
+    /* Typography Enhancements */
+    .highlight {
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+      position: relative;
+      padding-bottom: 5px;
+    }
+
+    .display-4 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .lead {
+      font-size: 1.2rem;
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Service Cards Design */
+    .service-card {
+      background: rgba(30, 41, 59, 0.3);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      height: 100%;
+      transition: var(--transition-smooth);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      background: rgba(37, 37, 56, 0.5);
+      box-shadow: var(--shadow-xl), var(--border-glow);
+      border-color: rgba(109, 40, 217, 0.3);
+    }
+
+    .service-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 15px;
+      background: var(--primary-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 25px rgba(74, 0, 224, 0.3);
+      font-size: 28px;
+      color: white;
+    }
+
+    /* Header Enhancements */
+    .header {
+      padding: 20px 0;
+    }
+
+    .header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--primary-gradient);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .navmenu {
+      display: flex;
+      align-items: center;
+    }
+
+    .navmenu ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navmenu a {
+      color: #cbd5e1;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      transition: var(--transition-smooth);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .navmenu a:hover,
+    .navmenu a.active {
+      background: rgba(109, 40, 217, 0.1);
+      color: white;
+    }
+
+    .header-social-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .header-social-links a {
+      color: #cbd5e1;
+      font-size: 1.2rem;
+      transition: var(--transition-smooth);
+      text-decoration: none;
+    }
+
+    .header-social-links a:hover {
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* Service Details Specific Styles */
+    .service-meta {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .service-category {
+      background: rgba(109, 40, 217, 0.2);
+      color: #a78bfa;
+      padding: 6px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .reading-time {
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .service-description {
+      font-size: 1.3rem;
+      color: #cbd5e1;
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    .service-visual {
+      margin: 40px 0;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+    }
+
+    .service-visual img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .service-narrative h3 {
+      color: white;
+      margin: 30px 0 20px;
+      font-size: 1.8rem;
+    }
+
+    .service-narrative p {
+      color: #94a3b8;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    /* Benefits Grid */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .benefit-card {
+      background: rgba(30, 41, 59, 0.3);
+      padding: 25px;
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: var(--transition-smooth);
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-5px);
+      background: rgba(37, 37, 56, 0.5);
+      border-color: rgba(109, 40, 217, 0.3);
+    }
+
+    .benefit-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--primary-gradient);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+      font-size: 22px;
+      color: white;
+    }
+
+    .benefit-card h4 {
+      color: white;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .benefit-card p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Timeline */
+    .timeline-section {
+      margin: 60px 0;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent-color), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+      padding-left: 30px;
+    }
+
+    .timeline-marker {
+      position: absolute;
+      left: -20px;
+      top: 0;
+      width: 40px;
+      height: 40px;
+      background: var(--primary-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+      box-shadow: 0 5px 15px rgba(74, 0, 224, 0.3);
+    }
+
+    .timeline-content h4 {
+      color: white;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    .timeline-content p {
+      color: #94a3b8;
+      margin-bottom: 5px;
+      line-height: 1.6;
+    }
+
+    .timeline-content small {
+      color: #a78bfa;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* Sidebar Styles */
+    .service-sidebar {
+      position: sticky;
+      top: 100px;
+    }
+
+    .overview-card {
+      background: rgba(30, 41, 59, 0.3);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .overview-header {
+      margin-bottom: 25px;
+    }
+
+    .overview-header h4 {
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    .overview-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: block;
+    }
+
+    .stat-label {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      margin-top: 5px;
+      display: block;
+    }
+
+    .overview-details {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 20px;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    .detail-row:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .detail-label {
+      color: #cbd5e1;
+    }
+
+    .detail-value {
+      color: white;
+      font-weight: 600;
+    }
+
+    /* Success Story */
+    .success-story {
+      background: rgba(30, 41, 59, 0.3);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .story-quote {
+      background: rgba(109, 40, 217, 0.1);
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .story-quote::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      font-size: 3rem;
+      color: var(--accent-color);
+      opacity: 0.3;
+      font-family: serif;
+    }
+
+    .story-quote p {
+      color: #cbd5e1;
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    .story-author {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .author-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary-gradient);
+    }
+
+    .author-details h5 {
+      color: white;
+      margin-bottom: 5px;
+      font-size: 1.1rem;
+    }
+
+    .author-details span {
+      color: #a78bfa;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .author-details small {
+      color: #94a3b8;
+      font-size: 0.8rem;
+    }
+
+    .story-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .metric {
+      text-align: center;
+    }
+
+    .metric-value {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 5px;
+    }
+
+    .metric-label {
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+
+    /* Consultation Form */
+    .consultation-form {
+      background: rgba(30, 41, 59, 0.3);
+      border-radius: 20px;
+      padding: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .form-header {
+      margin-bottom: 25px;
+    }
+
+    .form-header h4 {
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .form-header p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      transition: var(--transition-smooth);
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .form-input::placeholder {
+      color: #94a3b8;
+    }
+
+    textarea.form-input {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .btn-consultation {
+      width: 100%;
+      padding: 15px;
+      background: var(--primary-gradient);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-consultation:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(74, 0, 224, 0.3);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .display-4 {
+        font-size: 2.5rem;
+      }
+      
+      .h2 {
+        font-size: 1.5rem;
+      }
+      
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .navmenu ul {
+        flex-direction: column;
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 10, 15, 0.95);
+        padding: 20px;
+        display: none;
+      }
+      
+      .navmenu ul.show {
+        display: flex;
+      }
+      
+      .mobile-nav-toggle {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+      
+      .service-sidebar {
+        position: static;
+        margin-top: 50px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .display-4 {
+        font-size: 2rem;
+      }
+      
+      .service-details-hero {
+        padding: 120px 0 60px;
+      }
+      
+      .service-description {
+        font-size: 1.1rem;
+      }
+      
+      .overview-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 576px) {
+      .container {
+        padding: 0 15px;
+      }
+      
+      .display-4 {
+        font-size: 1.8rem;
+      }
+      
+      .lead {
+        font-size: 1rem;
+      }
+      
+      .overview-stats {
+        grid-template-columns: 1fr;
+      }
+      
+      .navmenu ul {
+        padding: 15px;
+      }
+    }
+
+    /* Footer */
+    .footer {
+      background: #0a0a0f;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 40px 0;
+    }
+
+    .footer h3, .footer h5 {
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .footer p, .footer a {
+      color: #94a3b8;
+      transition: var(--transition-smooth);
+    }
+
+    .footer a:hover {
+      color: white;
+      text-decoration: none;
+    }
+
+    .copyright, .credits {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    /* Scroll Top Button */
+    .scroll-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: var(--primary-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      opacity: 0;
+      transition: var(--transition-smooth);
+      z-index: 999;
+    }
+
+    .scroll-top.show {
+      opacity: 1;
+    }
+
+    /* Preloader */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0a0a0f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    #preloader:after {
+      content: '';
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(255, 255, 255, 0.1);
+      border-top-color: var(--accent-color);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Remove Bootstrap default styles that might interfere */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .btn i {
+      margin-right: 8px;
+    }
+
+    .mb-4 { margin-bottom: 1.5rem !important; }
+    .mb-3 { margin-bottom: 1rem !important; }
+    .mb-5 { margin-bottom: 3rem !important; }
+    .mt-4 { margin-top: 1.5rem !important; }
+    .mt-5 { margin-top: 3rem !important; }
+    .me-1 { margin-right: 0.25rem !important; }
+    .me-2 { margin-right: 0.5rem !important; }
+    .me-3 { margin-right: 1rem !important; }
+    .g-4 { gap: 1.5rem !important; }
+  </style>
+</head>
+
+<body class="service-details-page dark-theme">
+
+  <!-- Quick Access Links -->
+  <div class="quick-links">
+    <a href="#hero" class="quick-link" title="Home">
+      <i class="bi bi-house"></i>
+    </a>
+    <a href="#services" class="quick-link" title="Services">
+      <i class="bi bi-gear"></i>
+    </a>
+    <a href="#portfolio" class="quick-link" title="Portfolio">
+      <i class="bi bi-briefcase"></i>
+    </a>
+    <a href="#contact" class="quick-link" title="Contact">
+      <i class="bi bi-envelope"></i>
+    </a>
+  </div>
+
+  <header id="header" class="header dark-header d-flex align-items-center sticky-top">
+    <div class="container position-relative d-flex align-items-center justify-content-between">
+
+      <!-- Enhanced Logo -->
+      <a href="{% url 'home' %}" class="logo d-flex align-items-center me-auto me-xl-0">
+        <div class="logo-icon me-3">
+          <i class="bi bi-layers-half text-white fs-5"></i>
+        </div>
+        <h1 class="sitename mb-0 fw-bold" style="color: white; font-size: 1.5rem;">Abdelfatah Hany</h1>
+      </a>
+
+      <!-- Enhanced Navigation -->
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">
+            <i class="bi bi-house me-1"></i>Home
+          </a></li>
+          <li><a href="{% url 'about' %}" class="{% if request.path == '/about/' %}active{% endif %}">
+            <i class="bi bi-person me-1"></i>About
+          </a></li>
+          <li><a href="{% url 'resume' %}" class="{% if request.path == '/resume/' %}active{% endif %}">
+            <i class="bi bi-file-text me-1"></i>Resume
+          </a></li>
+          <li><a href="{% url 'services' %}" class="{% if request.path == '/services/' %}active{% endif %}">
+            <i class="bi bi-gear me-1"></i>Services
+          </a></li>
+          <li><a href="{% url 'portfolio' %}" class="{% if request.path == '/portfolio/' %}active{% endif %}">
+            <i class="bi bi-briefcase me-1"></i>Portfolio
+          </a></li>
+          <li><a href="{% url 'contact' %}" class="{% if request.path == '/contact/' %}active{% endif %}">
+            <i class="bi bi-envelope me-1"></i>Contact
+          </a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <!-- Enhanced Social Links -->
+      <div class="header-social-links">
+        <a href="https://www.facebook.com/abdelfattah.hany.2025" class="facebook" title="Facebook">
+          <i class="bi bi-facebook"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/abdelfatah-hany/" class="linkedin" title="LinkedIn">
+          <i class="bi bi-linkedin"></i>
+        </a>
+        <a href="https://github.com/abdelfatah18/" class="github" title="GitHub">
+          <i class="bi bi-github"></i>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="main">
+    <!-- Service Details Hero -->
+    <section id="service-details" class="service-details section service-details-hero">
+      <div class="container" data-aos="fade-up">
+        <div class="row">
+          <div class="col-lg-12">
+            <!-- Service Meta -->
+            <div class="service-meta">
+              <span class="service-category">Backend Development</span>
+              <span class="reading-time"><i class="bi bi-clock me-1"></i>8 min read</span>
+            </div>
+            
+            <!-- Main Title -->
+            <h1 class="display-4 fw-bold mb-4">Backend <span class="highlight">API Development</span></h1>
+            
+            <!-- Service Description -->
+            <p class="service-description">Professional RESTful API design and development using Django REST Framework. Building scalable, secure, and high-performance backend systems for modern web applications.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Service Details Content -->
+    <section class="section py-5">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row">
+          <!-- Main Content -->
+          <div class="col-lg-7">
+            <!-- Service Visual -->
+            <div class="service-visual" data-aos="zoom-in" data-aos-delay="200">
+              <img src="{% static 'base/img/services/api-development.jpg' %}" alt="API Development" class="img-fluid">
+            </div>
+
+            <!-- Service Narrative -->
+            <div class="service-narrative">
+              <h3>Transform Your Application with Robust APIs</h3>
+              <p>Design and development of production-ready RESTful APIs using Django REST Framework. I create efficient, scalable, and well-documented APIs that power modern web applications, mobile apps, and third-party integrations.</p>
+
+              <p>With expertise in building e-commerce platforms, medical systems, social media applications, and more, I ensure your APIs are secure, performant, and maintainable. Each API is crafted with best practices in mind, including proper authentication, rate limiting, and comprehensive documentation.</p>
+
+              <!-- Key Benefits Grid -->
+              <div class="benefits-grid" data-aos="fade-up" data-aos-delay="300">
+                <div class="benefit-card">
+                  <div class="benefit-icon">
+                    <i class="bi bi-shield-check"></i>
+                  </div>
+                  <h4>Security First</h4>
+                  <p>JWT authentication, OAuth 2.0, rate limiting, and input validation to protect against common vulnerabilities.</p>
+                </div>
+
+                <div class="benefit-card">
+                  <div class="benefit-icon">
+                    <i class="bi bi-lightning-charge"></i>
+                  </div>
+                  <h4>High Performance</h4>
+                  <p>Optimized database queries, caching strategies, and efficient algorithms for fast response times.</p>
+                </div>
+
+                <div class="benefit-card">
+                  <div class="benefit-icon">
+                    <i class="bi bi-arrows-angle-expand"></i>
+                  </div>
+                  <h4>Scalable Architecture</h4>
+                  <p>Modular design that grows with your business, handling increased traffic and complex requirements.</p>
+                </div>
+
+                <div class="benefit-card">
+                  <div class="benefit-icon">
+                    <i class="bi bi-file-earmark-text"></i>
+                  </div>
+                  <h4>Comprehensive Documentation</h4>
+                  <p>Clear API documentation with examples, making integration easy for frontend developers and third parties.</p>
+                </div>
+              </div>
+
+              <!-- Implementation Timeline -->
+              <div class="timeline-section" data-aos="fade-up" data-aos-delay="400">
+                <h3>Development Process</h3>
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <div class="timeline-marker">
+                      <span>1</span>
+                    </div>
+                    <div class="timeline-content">
+                      <h4>Requirements Analysis</h4>
+                      <p>Understanding your business needs, defining API endpoints, and planning the database schema.</p>
+                      <small>Week 1-2</small>
+                    </div>
+                  </div>
+
+                  <div class="timeline-item">
+                    <div class="timeline-marker">
+                      <span>2</span>
+                    </div>
+                    <div class="timeline-content">
+                      <h4>Development & Testing</h4>
+                      <p>Building RESTful endpoints, implementing authentication, and writing comprehensive unit tests.</p>
+                      <small>Week 3-6</small>
+                    </div>
+                  </div>
+
+                  <div class="timeline-item">
+                    <div class="timeline-marker">
+                      <span>3</span>
+                    </div>
+                    <div class="timeline-content">
+                      <h4>Security & Optimization</h4>
+                      <p>Implementing security measures, optimizing performance, and conducting security audits.</p>
+                      <small>Week 7-8</small>
+                    </div>
+                  </div>
+
+                  <div class="timeline-item">
+                    <div class="timeline-marker">
+                      <span>4</span>
+                    </div>
+                    <div class="timeline-content">
+                      <h4>Deployment & Documentation</h4>
+                      <p>Deploying to production, creating API documentation, and providing training materials.</p>
+                      <small>Week 9-10</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar -->
+          <div class="col-lg-5">
+            <div class="service-sidebar" data-aos="fade-up" data-aos-delay="200">
+              <!-- Service Overview -->
+              <div class="overview-card">
+                <div class="overview-header">
+                  <h4>Service Overview</h4>
+                </div>
+                <div class="overview-stats">
+                  <div class="stat-item">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Weeks Average</div>
+                  </div>
+                  <div class="stat-item">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Uptime</div>
+                  </div>
+                  <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Monitoring</div>
+                  </div>
+                </div>
+                <div class="overview-details">
+                  <div class="detail-row">
+                    <span class="detail-label">Investment Range</span>
+                    <span class="detail-value">$5K - $25K</span>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Technologies</span>
+                    <span class="detail-value">Django, DRF, PostgreSQL</span>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Delivery Time</span>
+                    <span class="detail-value">6-12 Weeks</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Client Success Story -->
+              <div class="success-story">
+                <div class="story-quote">
+                  <p>"Abdelfatah delivered a robust API system for our e-commerce platform that exceeded our expectations. The system handles thousands of requests per minute with excellent performance and reliability."</p>
+                </div>
+                <div class="story-author">
+                  <img src="{% static 'base/img/clients/client1.jpg' %}" alt="Sarah Johnson" class="author-avatar">
+                  <div class="author-details">
+                    <h5>Sarah Johnson</h5>
+                    <span>CTO</span>
+                    <small>E-Shop Solutions</small>
+                  </div>
+                </div>
+                <div class="story-metrics">
+                  <div class="metric">
+                    <span class="metric-value">3.2s</span>
+                    <span class="metric-label">Avg Response Time</span>
+                  </div>
+                  <div class="metric">
+                    <span class="metric-value">99.95%</span>
+                    <span class="metric-label">Uptime</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Consultation Form -->
+              <div class="consultation-form">
+                <div class="form-header">
+                  <h4>Start Your Project</h4>
+                  <p>Get in touch to discuss your API development needs and receive a customized proposal.</p>
+                </div>
+                <form action="#" method="post" class="php-email-form">
+                  <div class="form-group">
+                    <input type="text" name="name" class="form-input" placeholder="Your Name" required>
+                  </div>
+                  <div class="form-group">
+                    <input type="email" name="email" class="form-input" placeholder="Email Address" required>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" name="project" class="form-input" placeholder="Project Type">
+                  </div>
+                  <div class="form-group">
+                    <textarea name="message" class="form-input" rows="4" placeholder="Tell me about your project requirements..." required></textarea>
+                  </div>
+                  <button type="submit" class="btn-consultation">
+                    <span>Request Proposal</span>
+                    <i class="bi bi-arrow-right"></i>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technologies Used -->
+    <section class="py-5" style="background: rgba(30, 41, 59, 0.3);">
+      <div class="container">
+        <div class="section-title text-center mb-5" data-aos="fade-up">
+          <h3 class="h2 fw-bold mb-3">Technologies I Use</h3>
+          <p class="lead" style="color: #94a3b8;">Modern tools and frameworks for building robust backend systems</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-3 col-6 text-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="tech-item p-4">
+              <i class="bi bi-filetype-py display-6 mb-3" style="color: #3776AB;"></i>
+              <h5>Python</h5>
+            </div>
+          </div>
+          <div class="col-md-3 col-6 text-center" data-aos="fade-up" data-aos-delay="200">
+            <div class="tech-item p-4">
+              <i class="bi bi-braces display-6 mb-3" style="color: #092E20;"></i>
+              <h5>Django</h5>
+            </div>
+          </div>
+          <div class="col-md-3 col-6 text-center" data-aos="fade-up" data-aos-delay="300">
+            <div class="tech-item p-4">
+              <i class="bi bi-database display-6 mb-3" style="color: #336791;"></i>
+              <h5>PostgreSQL</h5>
+            </div>
+          </div>
+          <div class="col-md-3 col-6 text-center" data-aos="fade-up" data-aos-delay="400">
+            <div class="tech-item p-4">
+              <i class="bi bi-box display-6 mb-3" style="color: #2496ED;"></i>
+              <h5>Docker</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <h3 class="h4 mb-3 fw-bold" style="color: white;">Abdelfatah Hany</h3>
+          <p style="color: #94a3b8;">Creating innovative digital solutions with modern web technologies.</p>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <h5 class="h6 mb-3 fw-bold" style="color: white;">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="{% url 'home' %}" style="color: #94a3b8; text-decoration: none;">Home</a></li>
+            <li class="mb-2"><a href="{% url 'portfolio' %}" style="color: #94a3b8; text-decoration: none;">Portfolio</a></li>
+            <li class="mb-2"><a href="{% url 'services' %}" style="color: #94a3b8; text-decoration: none;">Services</a></li>
+            <li class="mb-2"><a href="{% url 'contact' %}" style="color: #94a3b8; text-decoration: none;">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <h5 class="h6 mb-3 fw-bold" style="color: white;">Connect With Me</h5>
+          <div class="social-links">
+            <a href="https://www.facebook.com/abdelfattah.hany.2025" class="social-icon" title="Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/abdelfatah-hany/" class="social-icon" title="LinkedIn">
+              <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="https://github.com/abdelfatah18/" class="social-icon" title="GitHub">
+              <i class="bi bi-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <hr style="background: rgba(255, 255, 255, 0.1); margin: 2rem 0;">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <div class="copyright">
+            <p class="mb-0" style="color: #94a3b8;">© <span>2024</span> <strong class="px-1" style="color: white;">Abdelfatah Hany</strong> <span>All Rights Reserved</span></p>
+          </div>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <div class="credits">
+            <span style="color: #94a3b8;">Designed by </span>
+            <a href="#" style="color: #a78bfa; text-decoration: none; font-weight: 600;">Abdelfatah Hany</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'base/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'base/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'base/vendor/waypoints/noframework.waypoints.js' %}"></script>
+  <script src="{% static 'base/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'base/main.js' %}"></script>
+
+  <!-- Custom JS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize AOS
+      if (typeof AOS !== 'undefined') {
+        AOS.init({
+          duration: 800,
+          once: true,
+          offset: 100
+        });
+      }
+
+      // Mobile menu toggle
+      const mobileToggle = document.querySelector('.mobile-nav-toggle');
+      const navMenu = document.querySelector('.navmenu ul');
+      
+      if (mobileToggle && navMenu) {
+        mobileToggle.addEventListener('click', function() {
+          navMenu.classList.toggle('show');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!e.target.closest('.navmenu') && !e.target.closest('.mobile-nav-toggle')) {
+            navMenu.classList.remove('show');
+          }
+        });
+      }
+
+      // Scroll to top button
+      const scrollTopButton = document.getElementById('scroll-top');
+      
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+          scrollTopButton.classList.add('show');
+        } else {
+          scrollTopButton.classList.remove('show');
+        }
+      });
+      
+      scrollTopButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+
+      // Hide preloader when page loads
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        window.addEventListener('load', function() {
+          setTimeout(() => {
+            preloader.style.display = 'none';
+          }, 500);
+        });
+      }
+
+      // Form submission
+      const form = document.querySelector('.php-email-form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Get form data
+          const formData = new FormData(this);
+          
+          // Here you would typically send the form data to your server
+          // For now, we'll just show a success message
+          alert('Thank you for your inquiry! I will contact you within 24 hours.');
+          form.reset();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

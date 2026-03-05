@@ -1,0 +1,210 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Abdelfatah Hany — Portfolio</title>
+  <link href="{% static 'base/styles.css' %}" rel="stylesheet">
+
+  <script defer src="scripts.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/3b2b6f6b3a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <img src="abdelfatah.jpg" alt="Abdelfatah" class="logo">
+        <div>
+          <h1>Abdelfatah Hany</h1>
+          <p class="subtitle">Back-End Developer • Django • REST APIs</p>
+        </div>
+      </div>
+      <nav class="menu">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#contact" class="btn">Contact</a>
+      </nav>
+      <button class="hamburger" aria-label="menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-left">
+          <h2>Hello, I'm <span class="accent">Abdelfatah</span></h2>
+          <p class="lead">Back‑End Software Engineer focused on scalable Django applications, REST APIs and database optimization. I build reliable systems and production-ready services.</p>
+          <div class="hero-ctas">
+            <a class="cta" href="#projects">See Projects</a>
+            <a class="cta ghost" href="/CV1.pdf" target="_blank">Download CV</a>
+          </div>
+          <div class="socials">
+            <a href="https://github.com/abdelfatah18" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="mailto:bahnasyabdelfatah399@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://linkedin.com/in/yourusername" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="photo-card">
+            <img src="abdelfatah.jpg" alt="Abdelfatah photo">
+            <div class="photo-tag">Back-End • Django</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="panel">
+      <div class="container">
+        <h3 class="section-title">About Me</h3>
+        <div class="about-grid">
+          <div>
+            <p>Third‑year Computer Engineering student with hands-on experience building Django applications, REST APIs and deploying services to cloud providers. Skilled in database optimization, CI/CD and team collaboration in Agile environments.</p>
+            <ul class="info-list">
+              <li><strong>Location:</strong> Cairo, Zahraa Nasr City</li>
+              <li><strong>Email:</strong> bahnasyabdelfatah399@gmail.com</li>
+              <li><strong>Phone:</strong> +201098708132</li>
+              <li><strong>Education:</strong> B.Sc. Computer Engineering — New Cairo Technological University (2022–2026)</li>
+            </ul>
+          </div>
+          <div>
+            <h4>What I do</h4>
+            <p>Design and implement backend systems using Django and Django REST Framework, optimize database queries (MySQL/Postgres/SQLite), write tests, and deploy with CI/CD.</p>
+            <div class="skill-badges">
+              <span>Python</span><span>Django</span><span>DRF</span><span>MySQL</span><span>Postgres</span><span>Docker</span><span>AWS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="panel alt">
+      <div class="container">
+        <h3 class="section-title">Skills</h3>
+        <div class="skills-grid" aria-hidden="false">
+          <div class="skill">
+            <h4>Backend</h4>
+            <p>Django, Django REST Framework, API design, authentication, JWT</p>
+          </div>
+          <div class="skill">
+            <h4>Databases</h4>
+            <p>MySQL, PostgreSQL, SQLite — query optimization & indexing</p>
+          </div>
+          <div class="skill">
+            <h4>DevOps</h4>
+            <p>Docker, GitHub Actions, Heroku, AWS EC2, CI/CD</p>
+          </div>
+          <div class="skill">
+            <h4>Testing</h4>
+            <p>Pytest, Django test framework, integration tests</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="panel">
+      <div class="container">
+        <h3 class="section-title">Selected Projects</h3>
+        <div class="projects-grid">
+          <article class="proj-card">
+            <img src="https://source.unsplash.com/900x600/?library" alt="Library">
+            <div class="proj-body">
+              <h4>Library Management System</h4>
+              <p>Role-based authentication, REST APIs, admin dashboard, used by 200+ students.</p>
+              <div class="proj-links">
+                <a href="https://github.com/abdelfatah18" target="_blank">GitHub</a>
+                <a href="#" class="live disabled">Live</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj-card">
+            <img src="https://source.unsplash.com/900x600/?chatbot" alt="ChatBot">
+            <div class="proj-body">
+              <h4>ChatBot with Django</h4>
+              <p>Simple conversational backend with webhook integration and message handling.</p>
+              <div class="proj-links">
+                <a href="https://github.com/abdelfatah18" target="_blank">GitHub</a>
+                <a href="#" class="live disabled">Live</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj-card">
+            <img src="https://source.unsplash.com/900x600/?dashboard" alt="Dashboard">
+            <div class="proj-body">
+              <h4>Admin Dashboard</h4>
+              <p>Dashboard for reports and system control with optimized queries and charts.</p>
+              <div class="proj-links">
+                <a href="https://github.com/abdelfatah18" target="_blank">GitHub</a>
+                <a href="#" class="live disabled">Live</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="certificates" class="panel alt">
+      <div class="container">
+        <h3 class="section-title">Certificates</h3>
+        <p class="lead">Professional courses and certificates relevant to Backend & DevOps.</p>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <h4>ALX Back-End Development</h4>
+            <p>ALX certificate in back-end development — projects using Django.</p>
+          </div>
+          <div class="cert-card">
+            <h4>ALX AI Career Essentials</h4>
+            <p>AI fundamentals and practical exercises.</p>
+          </div>
+          <div class="cert-card">
+            <h4>CCNA & Cyber Security</h4>
+            <p>Networking fundamentals and security basics.</p>
+          </div>
+          <div class="cert-card">
+            <h4>ProDev Backend</h4>
+            <p>Professional development track for backend engineering.</p>
+          </div>
+        </div>
+        <p class="small">Want these as verified images? Send me scanned certificates and I will add thumbnails and download links.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="panel">
+      <div class="container">
+        <h3 class="section-title">Contact</h3>
+        <div class="contact-grid">
+          <form id="contactForm" class="contact-form">
+            <label>Name<input type="text" id="name" required></label>
+            <label>Email<input type="email" id="email" required></label>
+            <label>Message<textarea id="message" rows="4" required></textarea></label>
+            <button class="btn submit" type="submit">Send Message</button>
+            <p id="formMsg" class="form-msg" aria-live="polite"></p>
+          </form>
+          <div>
+            <h4>Direct</h4>
+            <p>Email: <a href="mailto:bahnasyabdelfatah399@gmail.com">bahnasyabdelfatah399@gmail.com</a></p>
+            <p>Phone: +201098708132</p>
+            <a class="download-cv" href="/CV1.pdf" target="_blank"><i class="fas fa-download"></i> Download CV (PDF)</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 Abdelfatah Hany — Built with care. <span class="muted">Portfolio generated by ChatGPT</span></p>
+    </div>
+  </footer>
+</body>
+</html>
